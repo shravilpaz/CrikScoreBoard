@@ -1,0 +1,98 @@
+<!--
+  Generated template for the MatchDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>matchDetails</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background-color : #c48354">
+  <div class="brownBlock">
+    <h1>Enter match details</h1>
+    <form>
+  <ion-item>
+    <ion-label>Who won the toss : </ion-label>
+    <ion-select #winTeam required>
+      <ion-option [value]="t1name">{{t1name}}</ion-option>
+      <ion-option [value]="t2name">{{t2name}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Winning team decided to : </ion-label>
+    <ion-select #winTeamDecided required>
+      <ion-option value="bat">Bat</ion-option>
+      <ion-option value="field">Field</ion-option>
+    </ion-select>
+  </ion-item>
+  <button ion-button [disabled]="winTeam.value=='' || winTeamDecided.value==''" round style="text-transform : none" (click)="start(winTeam.value, winTeamDecided.value);">Submit</button>
+</form>
+</div>
+<br>
+<div *ngIf="nPlayers!=0" class="brownBlock">
+  <h1>Enter {{t1name}}'s player names : </h1>
+  <form>
+  <ion-list *ngFor="let p of ' '.repeat(nPlayers).split(''), let i = index">
+    <ion-item>
+      <ion-label>Player {{i+1}} : </ion-label>
+      <ion-input [disabled]="t1PTrue[i]" #t1player></ion-input>
+      <button ion-button clear *ngIf="!t1PTrue[i]" item-end (click)='addPlayer(t1name, t1player.value)' style="height:32px;">
+        <ion-icon name="add" style="font-size:32px;"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="nEPlayers!=0">
+<br>
+  <h1>Enter {{t1name}}'s extra player names : </h1>
+  <ion-list *ngFor="let p of ' '.repeat(nEPlayers).split(''), let i = index">
+    <ion-item>
+      <ion-label>Player {{i+1}} : </ion-label>
+      <ion-input [disabled]="t1EPTrue[i]" #t1Eplayer></ion-input>
+      <button ion-button clear *ngIf="!t1EPTrue[i]" item-end (click)='addExtraPlayer(t1name, t1Eplayer.value); ' style="height:32px;">
+        <ion-icon name="add" style="font-size:32px;"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+</div>
+<button ion-button round [disabled]="t1players.length!=nPlayers || t1Eplayers.length!=nEPlayers" style="text-transform : none" (click)="submitplayers(t1name)">Submit</button>
+</form>
+</div>
+<br>
+<div *ngIf="nPlayers!=0" class="brownBlock">
+    <h1>Enter {{t2name}}'s player names : </h1>
+    <form>
+    <ion-list *ngFor="let p of ' '.repeat(nPlayers).split(''), let i = index">
+      <ion-item>
+        <ion-label>Player {{i+1}} : </ion-label>
+        <ion-input [disabled]="t2PTrue[i]" #t2player></ion-input>
+        <button ion-button clear *ngIf="!t2PTrue[i]" item-end (click)='addPlayer(t2name, t2player.value)' style="height:32px;">
+          <ion-icon name="add" style="font-size:32px;"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-list>
+    <div *ngIf="nEPlayers!=0">
+  <br>
+    <h1>Enter {{t2name}}'s extra player names : </h1>
+    <ion-list *ngFor="let p of ' '.repeat(nEPlayers).split(''), let i = index">
+      <ion-item>
+        <ion-label>Player {{i+1}} : </ion-label>
+        <ion-input [disabled]="t2EPTrue[i]" #t2Eplayer></ion-input>
+        <button ion-button clear *ngIf="!t2EPTrue[i]" item-end (click)='addExtraPlayer(t2name, t2Eplayer.value); ' style="height:32px;">
+          <ion-icon name="add" style="font-size:32px;"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-list>
+  </div>
+  <button ion-button round [disabled]="t2players.length!=nPlayers || t2Eplayers.length!=nEPlayers" style="text-transform : none" (click)="submitplayers(t2name)">Submit</button>
+  </form>
+  </div>
+  <br>
+  <div class="brownBlock">
+  <button center [disabled]="matchDetails=='true' && t1Details=='true' && t2Details=='true'" ion-button block color="secondary" >Start</button>
+</div>

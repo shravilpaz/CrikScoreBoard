@@ -1,0 +1,7 @@
+{
+  "name": "CrikScoreKeeper",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      CrickScoreKeeper
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background-color: #c591ddad">
+  <h1>Welcome</h1>
+  <div class="purpleBlock">
+    <button ion-button large color="light" style="text-transform : none;" (click)="login()">Login</button>
+    <div *ngIf="isLogin">
+      <form>
+        <ion-item>
+          <ion-label>Username : </ion-label>
+          <ion-input clearInput type="text" #username required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Password : </ion-label>
+          <ion-input [type]="PWType" clearOnEdit="false" clearInput #password required></ion-input>
+          <button ion-button clear item-end (click)='showHidePW();' style="height:32px;">
+            <ion-icon [name]="eyeType" style="font-size:32px;"></ion-icon>
+          </button>
+        </ion-item>
+        <button ion-button round style="text-transform : none;" type="submit" (click)="loginSubmit(username.value,password.value)">Submit</button>
+      </form>
+    </div>
+  </div>
+  <br>
+  <div class="purpleBlock">
+    <button ion-button large color="dark" style="text-transform : none;" (click)="signUp()">Sign Up</button>
+    <div *ngIf="isSignUp">
+      <form>
+        <ion-item>
+          <ion-label>Full Name : </ion-label>
+          <ion-input clearInput type="text" #fullName required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Email : </ion-label>
+          <ion-input clearInput type="email" #emailrequired></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Phone Number : </ion-label>
+          <ion-input clearInput type="tel" #phoneNo required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>DOB : </ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY" #dob required required></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Username : </ion-label>
+          <ion-input clearInput type="text" #username required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Password : </ion-label>
+          <ion-input clearInput type="password" #pw required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Re-enter Password : </ion-label>
+          <ion-input clearInput type="password" #re_pw required></ion-input>
+        </ion-item>
+        <button ion-button round style="text-transform : none;" type="submit" (click)="signUpSubmit(fullName.value, email.value, phoneNo.value, dob.value, username.value, pw.value, re_pw.value)">Submit</button>
+      </form>
+    </div>
+  </div>
+</ion-content>
